@@ -26,108 +26,110 @@ def refreshTable():
                           foreground="#2f3136", font=('Gudea', 12))
     my_tree.place(x=10, y=680)
 
-# gui
-root = Tk()
-root.title("Book")
-root.geometry("1080x1080")
-root.configure(bg='#2f3136')
-root.resizable(False, False)
-my_tree = ttk.Treeview(root)
+#main root   
+if __name__ == '__main__':
+    # gui
+    root = Tk()
+    root.title("Book")
+    root.geometry("1080x1080")
+    root.configure(bg='#2f3136')
+    root.resizable(False, False)
+    my_tree = ttk.Treeview(root)
 
 
-# placeholders for entry
-ph1 = tk.StringVar()
-ph2 = tk.StringVar()
-ph3 = tk.StringVar()
-ph4 = tk.StringVar()
-ph5 = tk.StringVar()
+    # placeholders for entry
+    ph1 = tk.StringVar()
+    ph2 = tk.StringVar()
+    ph3 = tk.StringVar()
+    ph4 = tk.StringVar()
+    ph5 = tk.StringVar()
 
-# placeholders for Optiondrop
+    # placeholders for Optiondrop
 
-option_category = [
-    "---เลือก----",
-    "ไม่สังกัดหมวด",
-    "กีฬา ท่องเที่ยว สุขภาพและอาหาร",
-    "กฏหมาย",
-    "การศึกษา",
-    "การเมืองและการปกครอง",
-    "คอมพิวเตอร์",
-    "การเกษตรและชีววิทยา",
-    "เทคโนโลยี วิศวกรรม อุตสาหกรรม",
-    "ประวัติศาสตร์และอัตชีวประวัติ",
-    "จิตวิทยา",
-    "วิทยาศาสตร์",
-    "ศาสนาและปรัชญา",
-    "ธุรกิจ เศรษฐศาสตร์และการจัดการ",
-    "ศิลปะและวัฒนธรรม",
-    "ทั่วไป",
-    "นวนิยาย อ่านเล่นและนิทาน",
-    "สังคมศาสตร์",
-    "การเรียนรู้สำหรับเด็ก",
-    "Help Me Learn Series",
-    "ไฟฟ้าและอิเล็กทรอนิกส์",
-    "ภาษาศาสตร์",
-    "วรรณคดี",
-    "ไม่สังกัดหมวด"
-]
+    option_category = [
+        "---เลือก----",
+        "ไม่สังกัดหมวด",
+        "กีฬา ท่องเที่ยว สุขภาพและอาหาร",
+        "กฏหมาย",
+        "การศึกษา",
+        "การเมืองและการปกครอง",
+        "คอมพิวเตอร์",
+        "การเกษตรและชีววิทยา",
+        "เทคโนโลยี วิศวกรรม อุตสาหกรรม",
+        "ประวัติศาสตร์และอัตชีวประวัติ",
+        "จิตวิทยา",
+        "วิทยาศาสตร์",
+        "ศาสนาและปรัชญา",
+        "ธุรกิจ เศรษฐศาสตร์และการจัดการ",
+        "ศิลปะและวัฒนธรรม",
+        "ทั่วไป",
+        "นวนิยาย อ่านเล่นและนิทาน",
+        "สังคมศาสตร์",
+        "การเรียนรู้สำหรับเด็ก",
+        "Help Me Learn Series",
+        "ไฟฟ้าและอิเล็กทรอนิกส์",
+        "ภาษาศาสตร์",
+        "วรรณคดี",
+        "ไม่สังกัดหมวด"
+    ]
 
-option_publisher = [
-    "---เลือก----",
-    "ไม่ปรากฏสำนักพิมพ์ ",
-    "สำนักพิมพ์ เอ็ดดูเวิลด์เน็ต",
-    "สำนักพิมพ์ น้ำฝน",
-    "สำนักพิมพ์ ทูบีเลิฟ",
-    "สำนักพิมพ์ สกายบุ๊คส์",
-    "สำนักพิมพ์มหาวิทยาลัยเกษตรศาสตร์",
-    "สำนักพิมพ์ เอ็ม-เอ็ดดูเคชั่น",
-    "สำนักพิมพ์ ไอ เอ็ม บุ๊คส์",
-    "สำนักพิมพ์ มาร์เก็ตติ้ง แคเรีย",
-    "มหาวิทยาลัยแห่งชาติลาว",
-    "สำนักพิมพ์แม่โพสพ",
-    "สำนักพิมพ์ ฟาร์โกล๊บ พับลิชชิ่ง",
-    "สำนักพิมพ์ Freemind Publishing",
-    "ชุติมา ไตรรัตน์วรกุล",
-    "ศูนย์ส่งเสริมวิชาการ",
-    "สำนักพิมพ์ วังอักษร",
-    "เรสเตอร์ บุ๊ค",
-    "สำนักพิมพ์ทีบุ๊คส์",
-    "สำนักพิมพ์ปราณ",
-    "สำนักพิมพ์ ยิปซี",
-    "สำนักพิมพ์ กรีน ปัญญาญาณ",
-    "สำนักพิมพ์ ธรรมสภา",
-    "สำนักพิมพ์ IDC Premier"
-]
-
-
-option_type = [
-    "---เลือก----",
-    "หนังสือเผยแพร่ ",
-    "หนังสือลิขสิทธิ์สำนักพิมพ์",
-    "หนังสือหายาก",
-    "หนังสือต่างประเทศ"
-]
-
-clicked_category = StringVar()
-clicked_category.set(option_category[0])
-clicked_publisher = StringVar()
-clicked_publisher.set(option_category[0])
-clicked_type = StringVar()
-clicked_type.set(option_category[0])
-
-# placeholder set value function
+    option_publisher = [
+        "---เลือก----",
+        "ไม่ปรากฏสำนักพิมพ์ ",
+        "สำนักพิมพ์ เอ็ดดูเวิลด์เน็ต",
+        "สำนักพิมพ์ น้ำฝน",
+        "สำนักพิมพ์ ทูบีเลิฟ",
+        "สำนักพิมพ์ สกายบุ๊คส์",
+        "สำนักพิมพ์มหาวิทยาลัยเกษตรศาสตร์",
+        "สำนักพิมพ์ เอ็ม-เอ็ดดูเคชั่น",
+        "สำนักพิมพ์ ไอ เอ็ม บุ๊คส์",
+        "สำนักพิมพ์ มาร์เก็ตติ้ง แคเรีย",
+        "มหาวิทยาลัยแห่งชาติลาว",
+        "สำนักพิมพ์แม่โพสพ",
+        "สำนักพิมพ์ ฟาร์โกล๊บ พับลิชชิ่ง",
+        "สำนักพิมพ์ Freemind Publishing",
+        "ชุติมา ไตรรัตน์วรกุล",
+        "ศูนย์ส่งเสริมวิชาการ",
+        "สำนักพิมพ์ วังอักษร",
+        "เรสเตอร์ บุ๊ค",
+        "สำนักพิมพ์ทีบุ๊คส์",
+        "สำนักพิมพ์ปราณ",
+        "สำนักพิมพ์ ยิปซี",
+        "สำนักพิมพ์ กรีน ปัญญาญาณ",
+        "สำนักพิมพ์ ธรรมสภา",
+        "สำนักพิมพ์ IDC Premier"
+    ]
 
 
-def setph(word, num):
-    if num == 1:
-        ph1.set(word)
-    if num == 2:
-        ph2.set(word)
-    if num == 3:
-        ph3.set(word)
-    if num == 4:
-        ph4.set(word)
-    if num == 5:
-        ph5.set(word)
+    option_type = [
+        "---เลือก----",
+        "หนังสือเผยแพร่ ",
+        "หนังสือลิขสิทธิ์สำนักพิมพ์",
+        "หนังสือหายาก",
+        "หนังสือต่างประเทศ"
+    ]
+
+    clicked_category = StringVar()
+    clicked_category.set(option_category[0])
+    clicked_publisher = StringVar()
+    clicked_publisher.set(option_category[0])
+    clicked_type = StringVar()
+    clicked_type.set(option_category[0])
+
+    # placeholder set value function
+
+
+    def setph(word, num):
+        if num == 1:
+            ph1.set(word)
+        if num == 2:
+            ph2.set(word)
+        if num == 3:
+            ph3.set(word)
+        if num == 4:
+            ph4.set(word)
+        if num == 5:
+            ph5.set(word)
 
 
 def read():
