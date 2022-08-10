@@ -24,11 +24,7 @@ def login():  # ฟังก์ชั่นการตรวจสอบกา�
     code = password.get()
 
     if user == user_id and code == user_password:
-        scr_menu = Toplevel()
-        scr_menu.title("MENU")
-        scr_menu.geometry("1280x720+150+80")
-        scr_menu.configure(bg="#2f3136")
-        scr_menu.resizable(False, False)
+        toplevel()
     elif user == "" and code == "":
         messagebox.showerror("Invalid", "Please Enter Username and Password")
     elif user == "":
@@ -39,6 +35,13 @@ def login():  # ฟังก์ชั่นการตรวจสอบกา�
         messagebox.showerror("Invalid", "Please Enter Username")
     elif code != user_password:
         messagebox.showerror("Invalid", "Please Enter Password")
+
+def toplevel():
+    scr_menu = Toplevel()
+    scr_menu.title("MENU")
+    scr_menu.geometry("1280x720+150+80")
+    scr_menu.configure(bg="#2f3136")
+    scr_menu.resizable(False, False)
 
 
 if __name__ == '__main__':
@@ -80,5 +83,7 @@ if __name__ == '__main__':
 
     Button(root, text="Login", font=("Gudea", 14, "bold"), height=2,  # ปุ่มกดเรียกใชังานฟังก์ชั่น Login
         width=43, bg="#7289DA", fg="#ffffff", command=login).place(x=140, y=520)
+
+
 
     root.mainloop()
