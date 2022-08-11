@@ -30,7 +30,7 @@ def refreshTable():
 if __name__ == '__main__':
     # gui
     root = Tk()
-    root.title("Book")
+    root.title("Registration Book")
     root.geometry("1080x1080")
     root.configure(bg='#2f3136')
     root.resizable(False, False)
