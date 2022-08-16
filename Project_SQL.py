@@ -4,7 +4,9 @@ from tkinter import ttk
 from tkinter import messagebox
 import tkinter as tk
 
-# connection 
+# connection
+
+
 def connection():
     conn = pymysql.connect(
         host='localhost',
@@ -13,6 +15,7 @@ def connection():
         db='book_system',
     )
     return conn
+
 
 def refreshTable():
     for data in my_tree.get_children():
@@ -26,7 +29,8 @@ def refreshTable():
                           foreground="#2f3136", font=('Gudea', 12))
     my_tree.place(x=10, y=680)
 
-#main root   
+
+# main root
 if __name__ == '__main__':
     # gui
     root = Tk()
@@ -36,13 +40,15 @@ if __name__ == '__main__':
     root.resizable(False, False)
     my_tree = ttk.Treeview(root)
 
-
     # placeholders for entry
     ph1 = tk.StringVar()
     ph2 = tk.StringVar()
     ph3 = tk.StringVar()
     ph4 = tk.StringVar()
     ph5 = tk.StringVar()
+    ph6 = tk.StringVar()
+    ph7 = tk.StringVar()
+    ph8 = tk.StringVar()
 
     # placeholders for Optiondrop
 
@@ -100,7 +106,6 @@ if __name__ == '__main__':
         "สำนักพิมพ์ IDC Premier"
     ]
 
-
     option_type = [
         "---เลือก----",
         "หนังสือเผยแพร่ ",
@@ -118,7 +123,6 @@ if __name__ == '__main__':
 
     # placeholder set value function
 
-
     def setph(word, num):
         if num == 1:
             ph1.set(word)
@@ -130,7 +134,13 @@ if __name__ == '__main__':
             ph4.set(word)
         if num == 5:
             ph5.set(word)
-
+        if num == 6:
+            clicked_category.set(word)
+        if num == 7:
+            clicked_publisher.set(word)
+        if num == 8:
+            clicked_type.set(word)
+        
 
 def read():
     conn = connection()
@@ -226,9 +236,9 @@ def select():
         setph(author, 3)
         setph(headings, 4)
         setph(details, 5)
-        clicked_category.set(drop_cat)
-        clicked_publisher.set(drop_pub)
-        clicked_type.set(drop_t)
+        setph(drop_cat, 6)
+        setph(drop_pub, 7)
+        setph(drop_t, 8)
 
     except:
         messagebox.showinfo("Error", "Please select a data row")
@@ -255,13 +265,10 @@ def search():
                    drop_cat+"' or PUBLISHER='" +
                    drop_pub+"' or BOOK_TYPE='" +
                    drop_t+"' ")
-
     try:
         result = cursor.fetchall()
-
-        for num in range(0, 5):
+        for num in range(0, 8):
             setph(result[0][num], (num+1))
-
         conn.commit()
         conn.close()
     except:
